@@ -44,3 +44,14 @@ jupyter notebook
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7348120.svg)](https://doi.org/10.5281/zenodo.7348120)
 
 Ford, Jonathan, Camerlenghi, Angelo, Zolezzi, Francesca, & Calarco, Marilena. (2022). Seismic amplitude response to internal heterogeneity of mass-transport deposits (revision_v2). Zenodo. [https://doi.org/10.5281/zenodo.7348120](https://doi.org/10.5281/zenodo.7348120)
+
+## License
+
+Code to reproduce the results and figures is made available under the BSD 3-clause license. You can freely use and modify the code, without warranty, so long as you provide attribution to the authors. See `LICENSE` for the full text.
+
+The manuscript, figures, data and the results are made available under the [Creative Commons Attribution 4.0 International License][cc-by]. See `manuscript/LICENSE` for the full text.
+
+[![CC BY 4.0][cc-by-image]][cc-by]
+
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
+[cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
