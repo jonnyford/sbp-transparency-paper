@@ -1,0 +1,49 @@
+axes.titlesize: 8
+axes.labelsize: 8
+lines.markersize: 4
+xtick.labelsize: 8
+ytick.labelsize: 8
+
+lines.linewidth: 0.75
+axes.linewidth: 0.75
+xtick.major.width: 0.75
+ytick.major.width: 0.75
+xtick.minor.width: 0.75
+ytick.minor.width: 0.75
+lines.markeredgewidth: 0.75
+patch.linewidth: 0.75
+
+savefig.dpi: 300
+savefig.transparent: True
+savefig.bbox: tight
+savefig.pad_inches: 0.05
+
+figure.constrained_layout.use: True
+figure.figsize: 4.7, 2.35
+figure.dpi: 120
+
+font.size: 8
+font.family: Arial
+pdf.fonttype: 42
+ps.fonttype: 42
+
+legend.frameon: True
+legend.fancybox: False
+legend.framealpha: 1.0
+legend.edgecolor: black
+legend.facecolor: white
+legend.labelspacing: 0.25
+legend.handlelength: 0.6
+
+
+path.simplify:   True
+
+xtick.major.size: 3
+ytick.major.size: 3
+xtick.minor.size: 1.5
+ytick.minor.size: 1.5
+
+grid.color: darkgray
+grid.linewidth: 0.25
+
+#axes.prop_cycle: cycler('color', 'colorblind')

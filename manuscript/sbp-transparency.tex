@@ -1,0 +1,481 @@
+\documentclass[se,manuscript]{copernicus}
+
+\begin{document}
+
+\title{Seismic amplitude response to internal heterogeneity of mass-transport deposits}
+
+\Author[1]{Jonathan}{Ford}
+\Author[1]{Angelo}{Camerlenghi}
+\Author[2]{Francesca}{Zolezzi}
+\Author[2]{Marilena}{Calarco}
+
+\affil[1]{National Institute of Oceanography and Applied Geophysics -- OGS, Trieste, Italy}
+\affil[2]{RINA Consulting, Genova, Italy}
+
+\correspondence{J. Ford (jford@ogs.it)}
+
+\runningtitle{TEXT}
+\runningauthor{TEXT}
+
+\received{}
+\pubdiscuss{}
+\revised{}
+\accepted{}
+\published{}
+
+\firstpage{1}
+
+\maketitle
+
+\begin{abstract}
+Compared to unfailed sediments, mass-transport deposits are often characterised by a low-amplitude response in single-channel seismic reflection images.
+This `acoustic transparency' amplitude signature is widely used to delineate mass-transport deposits and is conventionally interpreted as a lack of coherent internal reflectivity due to a loss of preserved internal structure caused by mass-transport processes.
+In this study we examine the variation in the single-channel seismic response with changing heterogeneity using synthetic 2-D elastic seismic modelling.
+We model the internal structure of mass-transport deposits as a two-component random medium, using the lateral correlation length ($a_x$) as a proxy for the degree of internal deformation.
+The average internal reflectivity is held approximately constant with increasing deformation by fixing the two component sediment lithologies to have realistic P-wave velocity and density based on sediment core measurements from the study area.
+For a controlled single-source synthetic model a reduction in observed amplitude with reduced $a_x$ is consistently observed across a range of vertical correlation lengths ($a_z$).
+For typical AUV sub-bottom profiler acquisition parameters, in a simulated mass-transport deposit with realistic geostatistical properties, we find that when $a_x \approx 1$ \unit{m}, recorded seismic amplitudes are, on average, reduced by $\sim25$\% relative to unfailed sediments ($a_x \gg 10^3$ \unit{m}).
+We also observe that deformation significantly larger than core-scale ($a_x > 0.1$ \unit{m}) can generate a significant amplitude decrease.
+These synthetic modelling results should discourage interpretation of the internal structure of mass-transport deposits based on seismic amplitudes alone, as `acoustically transparent' mass-transport deposits may still preserve coherent, metre-scale internal structure.
+In addition, the minimum scale of heterogeneity required to produce a significant reduction in seismic amplitudes is likely much larger than the typical diameter of sediment cores, meaning that `acoustically transparent' mass-transport deposits may still appear well-stratified and undeformed at core-scale.
+\end{abstract}
+
+\introduction
+\label{sec:introduction}
+
+The internal structure of mass-transport deposits (MTDs) preserves information on the flow type, post-failure dynamics and emplacement of subaqueous mass-movements \citep{mulder_classification_1996,lucente_anatomy_2003,lamarche_meso-scale_2016,sobiesiak_internal_2016}.
+Geophysical imaging of internal structure can therefore play an important role in constraining the geohazard potential from mass-movements such as submarine landslides and debris flows \citep[e.g.,][]{strasser_slumping_2011,pini_et_al_2012,ogata_geophysical-geochemical_2019,karstens_gradual_2019}.
+MTDs are often identified, delineated and classified based on their distinctive seismic character (or `echofacies') in seismic reflection data \citep{moscardelli_new_2008,alves_assessing_2014,clare2018}.
+Due to their non-conformal upper and lower surfaces, MTDs are frequently bounded by high-amplitude, laterally continuous top and basal reflectors \citep{martinez_3d_2005}.
+Their internal structure, instead, is often reported to have a characteristic low-amplitude seismic response compared to unfailed sediments.
+This seismic character has previously been described in both single- and multi-channel data as {`semi-transparent'} \citep{piper1997mass,moernaut_evaluating_2020}, `acoustically transparent' \citep{talling_how_2010,hunt_submarine_2021}, `low reflectivity' \citep{sawyer_retrogressive_2009}, `transparent-to-chaotic' \citep{posamentier2011character} or similar.
+To date, however, the precise geophysical mechanisms that control this low-amplitude internal seismic response have received little attention from the marine geohazard community.
+Previous studies have invoked mechanisms such as the more uniform physical properties of sediments within MTDs due to, e.g., over-compaction or fine-scale mixing during sediment transport \citep{posamentier_seismic_2003,shipp_physical_2004,sawyer_retrogressive_2009}.
+Others have implied that the loss of coherent seismic character results from internal disaggregation, indicating a debris flow-like deposit lacking coherent internal structure \citep[e.g.,][]{diviacco_late_2006,hunt_submarine_2021}.
+In other words, many studies make an implicit assumption that the internal seismic character of MTDs can be directly related to the preservation of internal structure (or lack thereof).
+
+One indication that the seismic amplitude response is not straightforwardly related to preserved internal structure is that modern high-resolution geophysical datasets, particularly 3-D seismic volumes, have revealed previously unresolvable organisation and internal structure within MTDs as small as metre-to-decametre scale \citep{bull_review_2009,gafeira_3d_2010,alves_geomorphologic_2010,bellwald_shear_2018,badhani_integrated_2020,barrett_does_2021}.
+Another indication is that sediment core samples retrieved from seismically `transparent' bodies can sometimes show little evidence of internal deformation at core-scale (10s of cm and lower) \citep[][Fig.~\ref{fig:black-sea-core}, this study]{expedition_316_scientists_expedition_2009, strasser_slumping_2011, sammartini_propagation_2021}.
+This apparent contradiction prevents both qualitative and quantitative correlation between core and seismic data inside MTDs.
+Finally, field evidence from high-resolution outcrop studies often shows a high degree of internal structural organisation preserved within exhumed `fossil' MTDs, over sub-centimetre to kilometre scale lengths \citep{lucente_anatomy_2003,lamarche_meso-scale_2016}.
+
+To infer geological structure from the seismic response, and to properly correlate seismic and core observations, requires an improved understanding of the geophysical controls on the seismic amplitude response in MTD-like (i.e., complex and strongly heterogeneous) geology.
+To address this for the single-channel, zero-offset case (e.g., sub-bottom profiler data), we model the seismic response of a range of geological models that aim to approximate---in a general sense---the heterogeneous internal structure of MTDs.
+We model the internal structure of MTDs as anisotropic, two-component (binarised) random fields, and vary the lateral correlation length to simulate changing degrees of structural deformation.
+We perform 2-D elastic finite difference modelling of the seismic response at realistic sub-bottom profiler bandwidths with two experimental setups: i) a controlled single-source synthetic experiment based on an simple homogeneous-heterogeneous four layer marine model, and ii) a multi-source synthetic AUV profile based on an alongslope sub-bottom profile from a 2017 Black Sea geohazard survey.
+By isolating the effect of internal deformation from lithological and petrophysical alteration by mass-movement processes, we aim to better understand the possible contribution of changing heterogeneity to the amplitude of the single-channel seismic response.
+
+\section{Black Sea geohazard survey case study}
+
+A marine geohazard survey was carried out in the Black Sea in 2017 to support construction of a planned pipeline.
+The survey comprised geophysical data (multi-channel seismic, bathymetry and single-channel `Chirp' sub-bottom seismic profiles), gravity and piston core sampling and geotechnical investigation with cone-penetration tests (CPT).
+The main study area was a submarine canyon incised into the continental slope, in water depths between approximately $-100$ to $-1800$ \unit{m}.
+The results were used to identify and characterise the main geohazards in the study area such as faults, sediment failures and fluid migration, and to inform parameters used in engineering studies for pipeline design.
+Data were acquired from two platforms: a traditional survey vessel and an accompanying autonomous underwater vehicle (AUV).
+The AUV simultaneously acquired high-resolution bathymetry (approx. $2\times2$ \unit{m} resolution in the area considered in this study) and a dense grid of 2-D sub-bottom profiles (approx. $100 \times 700$ \unit{m} longitudinal/cross-line spacing in the area considered in this study).
+
+From the bathymetry and AUV Chirp data we mapped a large MTD emplaced in the centre of the canyon (Fig.~\ref{fig:black-sea-example}).
+The MTD lies between approx. $-400$ and $-1100$ \unit{m} water depth, buried under a thin ($<2$ \unit{m} thick) sediment drape.
+It has a maximum width of approx. $1.8$ \unit{km}, a maximum thickness of approx. $35$ \unit{m} and runs out for a mapped length of $>23$ \unit{km} down the canyon.
+The total runout length and volume are unknown because the survey area does not cover the entire MTD body.
+Several sediment cores and CPT measurements were made inside and in the immediate vicinity of the MTD (see Fig.~\ref{fig:black-sea-example} and Figs. S1 and S2).
+
+AUV Chirp profiles intersecting the MTD show a generally consistent seismic character (Figs.~\ref{fig:black-sea-example}b and \ref{fig:black-sea-example}c).
+The apparent basal surface consistently appears as a coherent, high-amplitude seismic horizon.
+The apparent top surface is less well defined, but is generally visible and topped by a sediment drape characterised by high-amplitude, sub-parallel reflectors.
+The internal character of the MTD is generally low-amplitude relative to the surrounding unfailed, well-stratified sediments---a classic apparently `acoustically transparent' seismic character.
+The root-mean-squared (RMS) average envelope amplitude within the body is approximately half of the RMS envelope amplitude of the unfailed background sediments (Fig.~\ref{fig:black-sea-example}d-e).
+A sediment core taken inside the MTD shows clear stratification, with little evidence of disturbed bedding or deformation structures within the interval that corresponds to the `acoustically transparent' MTD (Fig.~\ref{fig:black-sea-core}).
+
+\begin{figure*}
+        \includegraphics{figures/fig01.pdf}
+        \caption{Example from the 2017 Black Sea geohazard survey of an MTD where the internal seismic amplitude response is appreciably lower compared to the unfailed sediments (`acoustic transparency').
+        a) Map showing location of the SBPs (b and c), sediment core, CPT measurement and stacking velocity profile relative to the interpreted extent of the MTD. Background bathymetry from \cite{gebco2021}.
+        b) Downslope-oriented and c) alongslope-oriented AUV SBPs intersecting the deposit.
+        d) and e) Amplitude analysis histograms.
+        `MTD' corresponds to mass-transport deposit, `SBP' corresponds to sub-bottom profile.}
+        \label{fig:black-sea-example}
+\end{figure*}
+
+\begin{figure}
+    \includegraphics[width=8.3cm]{figures/fig02.pdf}
+    \caption{Piston gravity core GH-H-PGC7 (see Fig.~\ref{fig:black-sea-example} for location).
+        Core photograph, X-ray computed tomography image (note: only first 2 \unit{m} are scanned) and interpreted graphical log.
+        The `seismically transparent' MTD corresponds to the mass-transport deposit labelled in Fig.~\ref{fig:black-sea-example}b.}
+    \label{fig:black-sea-core}
+\end{figure}
+
+\section{Methodology}
+
+\subsection{Single-source synthetic experiment}
+\label{sec:methodology-single}
+
+The controlled single-source synthetic experiment is intended to test the seismic response of an anisotropic, two-component random medium over a large range of vertical and lateral scale lengths.
+For this reason, the model is of limited size (40$\times$40 \unit{m}) to ensure that the forward modelling is computationally feasible.
+The model is composed of four layers: a water layer and three sediment layers comprising a heterogeneous layer bounded by two homogeneous layers (Fig.~\ref{fig:single-source-model}a).
+The heterogeneous layer is an anisotropic, two-component (binarised) 2-D random medium with exponential autocorrelation, defined by its lateral and vertical correlation lengths, $a_x$ and $a_z$.
+
+For zero-offset, single-channel seismic reflection data (i.e., largely normal incidence reflections), the dominant control on the recorded seismic amplitudes is the P-impedance contrast between layers.
+We use multi-sensor core logging (MSCL) measurements from four sediment cores in the study area ({GH-H-PGC7}, {GH-H-PGC8}, {GH-H-JPC4A} and {GH-H-JPC5A}) to derive realistic, geologically plausible P-impedance contrasts between the two component sediment lithologies (Fig.~S1).
+We define the density of each component lithology as approximately one standard deviation (in each direction) from the mean density of 2000 \unit{kg m^{-3}}.
+The P-wave velocity logs appear noisy and slower than the P-wave velocity of water (approx. 1500 \unit{ms^{-1}}), indicating that there has likely been pore fluid expulsion and related crack formation developed between core retrieval and laboratory analysis.
+To better replicate in situ conditions, we assign the P-wave velocity contrast from the MSCL measurements (one standard deviation, as for the density) and add a correction based on a stacking velocity profile from a multi-channel seismic common-midpoint gather located close to the alongslope profile (Fig.~\ref{fig:black-sea-example}, Fig.~S3), so that the minimum P-wave velocity is equivalent to the average Dix-converted interval velocity in the uppermost 100 \unit{ms} of the study area ($v_P=1514.9$ \unit{ms^{-1}}).
+The P-wave velocity in the water layer corresponds to the picked water velocity from the stacking velocity profile, and the density is 1000 \unit{kg m^{-3}}.
+
+In strongly heterogeneous media it is likely that a proportion of the reflected wavefield will have been scattered from outside the vertical plane of the source-receiver and therefore may be subject to multi-pathing and subsequent P-S mode conversion.
+We have no seismic measurements of the S-wave velocities of the sediments in the study area, therefore we assign an arbitrary $v_P/v_S$ ratio based on typical Poisson's ratio values for shallow marine sediments.
+Poisson's ratio, $\nu$, is a measure of the incompressibility and is related to $v_P/v_S$ by $\nu=\frac{0.5(v_P/v_S) ^ 2 - 1}{(v_P/v_S) ^ 2 - 1}$.
+In gas-free settings, poorly consolidated marine sediments tend to have higher porosity, a higher bulk fraction of water (incompressible) and therefore a high Poisson's ratio (lower $v_P/v_S$), up to $\nu=0.5$ (equivalent to a suspension of particles in water, where shear waves can no longer be supported).
+Conversely, well consolidated, lithified marine sediments tend to have a lower Poisson's ratio (higher $v_P/v_S$) around $\nu=0.33$ or $v_P/v_S=2$ \citep{castagna1985}.
+Published estimates of Poisson's ratio in shallow marine sediments range from $\nu=0.42$ to $\nu=0.49$ \citep{hamilton_vpvs_1979, caiti_estimation_1994, provenzano_decimetric-resolution_2018}.
+MTDs, however, are very often observed to be more consolidated than unfailed sediments \citep{shipp_physical_2004}, meaning that extrapolating elastic moduli estimated from unfailed sediments to MTDs may not be valid.
+Given that we expect P-S mode converted energy to make a relatively small contribution to the reflected wavefield, for these experiments we assume an arbitrary Poisson's ratio for the component lithologies of $\nu=0.47$, corresponding to a $v_P/v_S=4$.
+
+It should be noted that we do not aim to estimate realistic elastic parameters of distinct lithologies from the study area, rather we aim to reproduce geologically plausible elastic contrasts (i.e., reflectivities) within the sediment column.
+The elastic parameters of the component sediment lithologies and water layer are listed in Table~\ref{table:component-lithologies}.
+
+\begin{table}
+    \caption{Elastic parameters for the water layer and the two component sediment lithologies.}
+    \label{table:component-lithologies}
+    \begin{tabular}{llll}
+        \tophline
+        & P-wave velocity & S-wave velocity & Density \\
+        \middlehline
+        Water & 1480 \unit{ms^{-1}} & --- & 1000 \unit{kg m^{-3}} \\
+        Lithology 1 & 1515 \unit{ms^{-1}} & 379 \unit{ms^{-1}} & 1900 \unit{kg m^{-3}} \\
+        Lithology 2 & 1650 \unit{ms^{-1}} & 413 \unit{ms^{-1}} & 2100 \unit{kg m^{-3}} \\
+        \bottomhline
+    \end{tabular}
+\end{table}
+
+The seismic source is located within the water layer (Fig.~\ref{fig:single-source-model}a), and is an impulsive pressure source with dominant frequency $1.5$ \unit{kHz}, similar to common `Chirp' sub-bottom profiler source bandwidths used for high-resolution seismic profiling of shallow sediments \citep{gutowski2002chirp}.
+The receiver records the pressure wavefield and is located coincident with the source, laterally offset by one grid point to avoid numerical artefacts associated with a co-located source and receiver in elastic modelling.
+The seismic forward modelling uses an elastic finite-difference modelling scheme, 4th order in space and 2nd order in time.
+The absorbing boundaries are sponge layers on all four grid edges, and the modelling is run for long enough to record a P-P reflection with the average P-wave velocity from the deepest part of the model directly beneath the source point.
+Detailed modelling parameters are given in Table~\ref{table:modelling-parameters}.
+
+\subsection{Multi-source synthetic experiment}
+\label{sec:methodology-realistic}
+
+The multi-source 2-D synthetic model is based on the alongslope example profile from the 2017 Black Sea geohazard survey (Fig.~\ref{fig:black-sea-example}c).
+The model consists of a homogenous water layer with a variable-depth waterbottom, below which the background (unfailed) sediment layer is modelled as a two-component (binarised) 1-D random medium with exponential autocorrelation, hung from the waterbottom.
+This simulates conformal, parallel bedding, similar in character to the background unfailed sediments generally observed in sub-bottom profiles from the study area (e.g., Fig.~\ref{fig:black-sea-example}b and Fig.~\ref{fig:black-sea-example}c).
+
+Geologically plausible vertical geostatistical parameters for the sediments in the model are derived from cone penetration tests (CPT) from the study area.
+The cone-tip resistance log for CPT location GH-T-PCPT7, along with the spatial autocorrelation function, is documented in Fig.~S2.
+We define the vertical correlation length in the sediments as $a_z=0.05$ \unit{m}, approximately consistent with the measured spatial autocorrelation functions (Fig.~S2c).
+It should be noted that we do not aim to exactly replicate the realistic vertical geostatistical parameters of the sedimentary column in the study area, rather we use the autocorrelation function to estimate geologically plausible `bed thicknesses' (closely related to $a_z$) for this simplified two lithology model.
+
+The MTD zone is modelled as an anisotropic, two-component (binarised) 2-D random medium with exponential autocorrelation, located close to the seafloor but partially covered by a thin drape of background sediment (Fig.~\ref{fig:multi-source-model}a).
+Elastic parameters for the component lithologies are consistent between the MTD and unfailed sediments (Table~\ref{table:component-lithologies}).
+The MTD zone random medium uses the same random seed as the unfailed sediments and is offset vertically from the waterbottom so that in the pre-failure state (arbitrarily set as $a_x=10^7$ \unit{m}) the beds are parallel and continuous with the surrounding unfailed sediments (Fig.~\ref{fig:multi-source-model}b).
+We simulate increasing post-failure deformation by progressively decreasing the lateral correlation length until the random medium is isotropic ($a_x=a_z=0.05$ \unit{m}).
+An example of a post-failure MTD model with lateral correlation length $a_x=50$ \unit{m} is shown in Fig.~\ref{fig:multi-source-model}c.
+
+The seismic source locations follow a `flight path' similar to the realistic AUV acquisition from the 2017 Black Sea geohazard survey (Fig.~\ref{fig:black-sea-example}), where the AUV flight path was targetted around 40 \unit{m} above the seafloor.
+We replicate a similar profile by placing the shot locations along a smoothed waterbottom, shifted up by 40 \unit{m}, with horizontal shot spacing 2 \unit{m} (Fig.~\ref{fig:multi-source-model}a).
+The source is an impulsive pressure source with zero-phase Ricker wavelet with dominant frequency 1.5 \unit{kHz}.
+The receiver records the pressure wavefield and is located co-incident with the source, laterally offset by one grid point to avoid numerical artefacts associated with a co-located source and receiver in elastic modelling.
+The finite-difference modelling scheme is elastic, 4th order in space, 2nd order in time.
+For computational efficiency, the global model is partitioned into sub-models for each shot.
+Each sub-model is centred on the shot location with lateral padding zones of 50 \unit{m} width on either side of the source location.
+The modelling uses absorbing boundaries (sponge layers) on all four edges of the sub-model grid.
+Because the sub-model is cut above the source, the number of vertical grid points depends on the source depth with respect to the base of the model.
+The modelling is run for long enough to record a P-P reflection, with the average velocity from the deepest part of the sub-model directly beneath the source point.
+Detailed modelling parameters are given in Table~\ref{table:modelling-parameters}.
+
+\begin{table}
+    \caption{Modelling parameters for the single-source and multi-source synthetic experiments. Rows marked with an asterisk are representative values, as the dimensions of the sub-model depends on the location within the global model.}
+    \label{table:modelling-parameters}
+    \begin{tabular}{lll}
+        \tophline
+        & Single-source & Multi-source \\
+        \middlehline
+        \multirow{2}{*}{Model dimensions} & \multirow{2}{*}{40 $\times$ 40 \unit{m} (1601 $\times$ 1601 grid points)} & Global: 5000 $\times$ 160 \unit{m} (100 001 $\times$ 3201 grid points) \\
+        & & Sub-models: 100 $\times$ 80 \unit{m} (2001 $\times$ 1601 grid points)$^*$ \\
+        Grid spacing & 0.025 $\times$ 0.025 \unit{m} & 0.05 $\times$ 0.05 \unit{m} \\
+        Timestep & 0.0081 \unit{ms} & 0.015 \unit{ms}\\
+        Modelling time & 43.7 \unit{ms} (5401 timesteps) & 112.5 \unit{ms} (7 500 timesteps)$^*$ \\
+        Absorbing boundaries & \multicolumn{2}{c}{Sponge layers (15 \unit{m}) on all four grid edges} \\
+        Source wavelet & \multicolumn{2}{c}{1.5 \unit{kHz} Ricker wavelet (zero-phase)} \\
+        Source interval & \multicolumn{1}{c}{---} & 2 \unit{m} \\
+        \bottomhline
+    \end{tabular}
+\end{table}
+
+\section{Results}
+
+\subsection{Single-source synthetic experiment}
+\label{sec:single-source-results}
+We generate realisations of the single-source synthetic experiment with lateral correlation lengths $10^{-3} \leq a_x \leq 10^4$ \unit{m} ($n=8$) and vertical correlation lengths $10^{-2} \leq a_z \leq 1$ \unit{m} ($n=5$) within the heterogeneous layer.
+For each distinct combination of parameters, $[a_x, a_z]$, we generate an ensemble of realisations ($n=10$) by varying the random seed used to generate the random field, giving a total of $n=400$ distinct models and modelling runs.
+Fig.~\ref{fig:single-source-model} shows the single-source synthetic experiment model geometry and one realisation of a single-source synthetic model.
+
+Fig.~\ref{fig:single-source-results}a shows the envelope of the modelled traces, recorded in two-way traveltime (TWTT) at the receiver, for a selection of the models with vertical correlation length $a_z=0.05$ \unit{m}.
+Reducing the lateral correlation length from $a_x=1000$ \unit{m} to $a_x=0.1$ \unit{m} systematically reduces the amplitudes recorded within the heterogeneous layer.
+A decaying coda is seen beneath the base of the heterogeneous layer, presumably associated with multiple reflections and scattering within the heterogeneous layer.
+For the longest lateral correlation lengths, the amplitudes in this coda are very low compared to within the heterogeneous layer.
+As the lateral correlation lengths decrease, the amplitudes in the coda systematically increase, until they are comparable to the amplitudes observed within the heterogeneous layer.
+
+Fig.~\ref{fig:single-source-results}b shows the root-mean-squared (RMS) envelope amplitude of the modelled traces within the TWTT window corresponding to the heterogeneous layer, against lateral correlation length, $a_x$.
+For all vertical correlation lengths tested, a reduction in lateral correlation length causes a reduction in RMS amplitude.
+The minimum RMS amplitude is on the order of 50\% of the maximum RMS amplitude.
+The most rapid drop in recorded amplitude occurs when lateral correlation lengths are $1 \leq a_x \leq 10^{-2}$ \unit{m}.
+The RMS vertical-incidence acoustic reflectivity remains approximately constant across all model realisations.
+
+\begin{figure*}
+    \includegraphics{figures/fig03.pdf}
+    \caption{Single-source synthetic experiment.
+        a) Model geometry. Both homogeneous sediment layers are composed entirely of Lithology 1.
+        The heterogeneous layer is an anisotropic, two-component exponential random medium composed of equal parts Lithology 1 and Lithology 2.
+        Elastic parameters are listed in Table~\ref{table:component-lithologies}.
+        The coincident seismic source and receiver location within the water layer is marked (yellow star).
+        b) A single realisation of the model showing the spatial distribution of Lithology 1 and Lithology 2 within the heterogeneous layer.}
+    \label{fig:single-source-model}
+\end{figure*}
+
+\begin{figure*}
+    \includegraphics{figures/fig04.pdf}
+    \caption{Single-source synthetic experiment results.
+        a) Envelope of trace amplitude for $n=10$ multiple realisations (grey) and the RMS envelope of all realisations (red) for fixed vertical correlation length $a_z=0.05$ m and lateral correlation lengths $a_x=\{1000, 100, 10, 1, 0.1\}$ \unit{m} (from left to right).
+        The two-way traveltime (TWTT) extent of the heterogeneous layer is shaded in blue.
+        b) (Top) RMS envelope within the heterogeneous zone against lateral correlation length, $a_x$, grouped by vertical correlation length, $a_z$.
+        (Bottom) RMS vertical incidence acoustic reflectivity within the heterogeneous zone.
+        $\lambda_d$ shows the dominant wavelength of the 1.5 \unit{kHz} seismic source in the sediment layers.}
+    \label{fig:single-source-results}
+\end{figure*}
+
+\subsection{Multi-source synthetic experiment}
+\label{sec:multi-source-results}
+
+We generate realisations of the multi-source synthetic experiment with lateral correlation lengths $5 \times 10^{-2} \leq a_x \leq 10^7$ \unit{m} ($n=8$) within the MTD zone.
+For each lateral correlation length we generate an ensemble of realisations ($n=5$) by varying the random seed used to generate the random fields, giving a total of $n=40$ distinct global models and modelling runs.
+The model geometry and two realisations of the global model, one representing the undeformed, pre-failure state ($a_x={10^7}$ \unit{m}, i.e., parallel bedding) and one representing a deformed, post-failure MTD ($a_x=50$ \unit{m}), are shown in Fig.~\ref{fig:multi-source-model}.
+
+Fig.~\ref{fig:multi-source-results} shows examples of simulated sub-bottom profiles for three models: one representing the undeformed, pre-failure state ($a_x=10^7$ \unit{m}, i.e., parallel bedding; Fig.~\ref{fig:multi-source-results}a), one representing a partially deformed MTD ($a_x=10$ \unit{m}; Fig.~\ref{fig:multi-source-results}b) and one representing a strongly disrupted MTD ($a_x=0.1$ \unit{m}; Fig.~\ref{fig:multi-source-results}c).
+We also plot the envelope amplitude of single traces from inside and outside the MTD zone for all realisations of each set of parameters, along with the ensemble RMS average traces.
+Visually, the modelled sub-bottom profiles show increasing `transparency' (i.e., an apparent decrease in average amplitude and the lateral continuity of reflectors) with decreasing lateral scale length.
+As in the single-source synthetic experiments, an apparent coda is visible as a noisy zone beneath the MTD for the shortest lateral scale lengths.
+
+Fig.~\ref{fig:multi-source-results}d shows the RMS amplitude of the modelled traces within and below the MTD zone.
+For all vertical correlation lengths tested, a reduction in lateral correlation length causes a reduction in RMS amplitude.
+The reduction in RMS amplitude between the unfailed ($a_x=10^7$ \unit{m}) and strongly deformed ($a_x=0.1$ \unit{m}) states is on the order of 25\%.
+The average vertical-incidence acoustic impedance contrast remains approximately constant across all model realisations.
+
+\begin{figure*}[p!]
+    \includegraphics[width=12cm]{figures/fig05.pdf}
+    \caption{
+        Multi-source synthetic model based on the alongslope AUV sub-bottom profile from the 2017 Black Sea geohazard survey (Fig.~\ref{fig:black-sea-example}).
+        a) Model geometry. The water layer is homogeneous. The unfailed background sediments and the MTD zone are two-component exponential random media comprising equal parts Lithology 1 and Lithology 2 (see Section~\ref{sec:methodology-realistic} for details of the random fields).
+        Elastic parameters of the component lithologies are listed in Table~\ref{table:component-lithologies}.
+        The source locations along the AUV flight path, approx. 40 \unit{m} above the waterbottom, are marked by the yellow dashed line (source interval 2 \unit{m}).
+        Two realisations of the model with the same random seed are shown:
+        b) MTD zone in pre-failure state (lateral correlation length is equivalent to unfailed sediments, $a_x=10^7$ m);
+        c) MTD zone in post-failure state (shorter lateral correlation length, $a_x=50$ m).
+        The location and extent of the synthetic sediment core in Fig.~\ref{fig:multi-source-cores} is shown in red.
+        `MTD' corresponds to mass-transport deposit.
+    }
+    \label{fig:multi-source-model}
+\end{figure*}
+
+\begin{figure*}
+    \includegraphics[width=12cm]{figures/fig06.pdf}
+    \caption{
+        Multi-source synthetic experiment results.
+        a-c) Synthetic AUV sub-bottom profiles of the seismic response (envelope of trace amplitude) to progressively decreasing lateral correlation length, $a_x$ (i.e., increasing deformation).
+        Side panels (right) show the trace envelopes for the individual model realisations (grey) and the RMS amplitude of all realisations for traces intersecting the MTD (red) and unfailed sediments (blue).
+        The two amplitude analysis windows are highlighted in cyan (internal MTD window) and green (below MTD deposit window).
+        d) (Top) RMS of the trace envelope and (bottom) RMS vertical incidence acoustic reflectivity against lateral correlation length ($a_x$) for all realisations, both inside the MTD (left; cyan window in a) and below the MTD (right; green window in a).
+        $\lambda_d$ shows the dominant wavelength of the seismic source in the sediment layers.
+        `MTD' corresponds to mass-transport deposit.
+    }
+    \label{fig:multi-source-results}
+\end{figure*}
+
+\section{Discussion}
+
+Our modelling of single-channel seismic experiments in two-component, anisotropic random media models shows a significant average amplitude reduction with decreasing lateral correlation length, despite the average reflectivity within the random media remaining approximately constant (Figs.~\ref{fig:single-source-results} and \ref{fig:multi-source-results}).
+We observe this effect with two synthetic single-channel seismic reflection experiments, both of which have geologically realistic impedance contrasts:
+\begin{enumerate}
+    \item A simplified single-source model with a heterogeneous random media layer (Section~\ref{sec:methodology-single}).
+    \item A multi-source model based on an AUV sub-bottom profile from the 2017 Black Sea geohazard survey, with geologically realistic geostatistical parameters and a random media zone representing an MTD (Section~\ref{sec:methodology-realistic}).
+\end{enumerate}
+The results of these modelling experiments show that geological heterogeneity, in particular lateral heterogeneity, has a strong control on the average recorded seismic amplitudes in single-channel seismic data.
+Interpretation of single- and multi-channel seismic images very often assumes a simple `convolutional’ model, whereby the seismic image represents the zero-offset acoustic reflectivity convolved with the source wavelet.
+This would imply an average amplitude response that is approximately proportional to the average reflectivity.
+Our observation of a systematic decrease in average amplitude with increasing heterogeneity means that in strongly heterogeneous media (i.e., complex, strongly deformed geobodies), this acoustic, ‘convolutional’ model is no longer a good approximation of the subsurface reflectivity (i.e., the internal structure of the geobody), even for single-channel seismic reflection data.
+
+\subsection{Seismic amplitude response of heterogeneous media}
+\label{sec:discussion-het-media}
+While the two synthetic modelling experiments demonstrate a systematic amplitude decrease with decreasing lateral correlation length (Figs.~\ref{fig:single-source-results} and \ref{fig:multi-source-results}), we do not claim to conclusive identify a geophysical mechanism that might cause this effect.
+
+We do expect that seismic tuning, where the vertical distance between two distinct reflectors is around the dominant source wavelength, will have an effect on the recorded amplitudes \citep{chung_quantitative_1999}.
+Constructive interference will increase---and destructive interference  decrease---the recorded amplitudes.
+In our experiments, the primary control on the vertical distance between reflectors is the vertical correlation length, roughly equivalent to the average `bed thickness’ (the lateral correlation length also has a minor control, where bed thickness tends to zero at the lateral terminations).
+These variations in bed thickness may explain a small component of the variation in seismic amplitude with changing lateral correlation length.
+The single-source synthetic experiment, however, reproduces significant, sustained amplitude decrease with decreasing lateral correlation length over a two-orders-of-magnitude variation in vertical correlation length (Fig.~\ref{fig:single-source-results}b).
+The fact that we observe the amplitude reduction effect over this range implies that seismic tuning between thin beds is not the dominant control on the average amplitude response in these type of heterogeneous media, in general.
+
+Real-world seismic reflection experiments commonly show amplitude variation with changing incidence angle between the seismic wavefront and the reflector, caused by partitioning between transmitted and reflected P- and S-wave energy across an interface in elastic media \citep{shuey_simplification_1985}.
+This is often observed in multi-channel seismic data as an ‘amplitude variation with offset’ (AVO) effect \citep{avseth2010quantitative}.
+Altering the geostatistical properties of the random media changes the \emph{distribution} of the dips of the interfaces within the heterogeneous zone.
+In zero-offset data (i.e., single-channel data), however, the incidence angle of primary reflections should always be normal to the reflecting interface.
+By way of example: in the far-field, the seismic wavefront can be approximated as a plane-wave.
+In the case of parallel horizontal bedding, the reflectors will be tangential to the wavefront, and thus generate an `ideal' reflection.
+In the opposite extreme, where bedding is parallel and vertical, a surface seismic reflection experiment would not image these interfaces, even if there is high reflectivity between distinct beds.
+It may be that the amplitude reduction effect seen in this study is largely caused by a smaller proportion of reflectors being oriented tangential to the expanding wavefront (see Figs.~\ref{fig:single-source-model} and \ref{fig:multi-source-model}).
+
+We also see evidence that seismic scattering plays a role in the amplitude reduction effect.
+Scattering effectively increases the path length of a ray within the medium, so scattered energy will appear to arrive at a later TWTT than primary reflections.
+This has the effect of reducing the total energy recorded within the primary TWTT of the heterogeneous zone and increasing the amplitude at later TWTTs (a so-called `coda').
+We do observe a coda, both in the single-source and the multi-source synthetic experiments (Figs.~\ref{fig:single-source-results} and \ref{fig:multi-source-results}).
+There are likely two main scattering components to this coda: i) multiple scattering (so-called `internal multiples') and ii) diffractions from heterogeneities.
+The contribution of multiple scattering should be largely independent of the lateral correlation length, as it is principally energy reflected more than once quasi-vertically between beds.
+Diffractions are generated by heterogeneities and lateral truncations on the scale of the seismic wavelength \citep{schwarz_introduction_2019}.
+As the lateral correlation length decreases, the frequency of small heterogeneities and bed terminations (lateral truncations) increases (Figs.~\ref{fig:single-source-model} and \ref{fig:multi-source-model}).
+This implies that the proportion of energy that is diffracted, rather than reflected, from the heterogeneous zone is increased.
+The consequence is an increased coda amplitude, and a decrease in the amplitude of reflections within the primary TWTT of the heterogeneous zone (Figs.~\ref{fig:single-source-results} and \ref{fig:multi-source-results}).
+
+We expect that the magnitude of the heterogeneity-induced amplitude reduction effect should be dependent on the Fresnel radius, $r_F=\sqrt{\frac{z v}{2 f}}$, where $f$ is the source frequency, $z$ is the separation of the source and the target and $v$ is the velocity of the medium.
+The Fresnel zone represents the lateral width over which energy reflected from individual reflectors constructively (or destructively) interferes.
+The binarised random media considered in the study are composed of reflectors with the same magnitude reflectivity, but potentially opposite polarities.
+A larger Fresnel zone (or, conversely, a shorter lateral scale length) implies that more of these individual reflectors will contribute to the amplitude response for a single trace.
+The size of the Fresnel zone is a particularly important consideration for real world sub-bottom profiler data, as single-channel data are rarely migrated (which collapses the Fresnel radius to approximately the seismic wavelength).
+In addition, unlike the AUV configuration in the multi-source synthetic experiment (Section~\ref{sec:methodology-realistic}), single-channel data are often acquired from hull-mounted or towed configurations which can imply significantly greater separations between the source and the target ($z$) than considered in these synthetic examples.
+In the Supporting Information, we present an example of a `far source' single-source synthetic experiment where the source/receiver is located 56 \unit{m} from the top of the heterogeneous layer (Fig.~S12), compared to 16 \unit{m} in the original single-source synthetic experiment (Fig.~\ref{fig:single-source-model}).
+This corresponds to Fresnel radii of 5.3 \unit{m} and 2.8 \unit{m} respectively.
+The average reduction in RMS seismic amplitude is similar between the two examples, on the order of 50\% (Figs.~S13 and S15), with a slightly higher decrease in RMS amplitude at lower lateral scale lengths in the `far source' experiment.
+
+Analytical techniques, such as `convolutional' modelling, are able to predict the amplitude response of individual, isolated seismic reflectors.
+Our results showing the divergence of seismic amplitudes from the reflectivity indicate that more sophisticated modelling techniques are necessary to properly model the seismic amplitude response of heterogeneous geobodies \citep[as shown in, e.g.,][]{carcione_numerical_2016}.
+The observed contribution of scattering to the recorded wavefield implies that full-wavefield seismic modelling techniques, as used in this study, are necessary to accurately reproduce the seismic amplitudes within heterogeneous geobodies.
+In this study we develop a workflow for empirically estimating the possible amplitude contribution from heterogeneity (a proxy for deformation) using a random media approximation for MTDs and finite-difference full-wavefield seismic modelling.
+
+\subsection{Seismic `transparency' in mass-transport deposits}
+We suggest that, to a first approximation, the internal heterogeneity of MTDs may be similar to the anisotropic, two-component random media models we use in this study.
+Previous studies have suggested similar models for mass-transport related stratal disruption, whereby a thin-bedded sedimentary sequence is progressively deformed by mass-transport processes, creating laterally truncated beds and ultimately a `block-in-matrix' style fabric \citep[][see Fig.~\ref{fig:multi-source-cores}b, this study]{ogata_mass_2012, ford2020}.
+This style of internal deformation is visually similar to anisotropic, two-component exponential random media (Figs.~\ref{fig:single-source-model}, \ref{fig:multi-source-model} and \ref{fig:multi-source-cores}).
+MTDs contain a wide variety of internal structural fabrics, and we do not aim to precisely replicate these with the random media models.
+Mass-transport processes in general, however, will act to laterally extend or compress (by faulting, folding and shearing) previously undeformed sediments.
+Stratal disruption therefore acts to increase the lateral heterogeneity, equivalent to decreasing the lateral correlation length.
+Even though the random media models used in this study do not accurately reproduce realistic internal structure of MTDs, they can approximate the first-order changes in heterogeneity caused by mass-transport processes.
+
+We suggest that this modelled amplitude reduction effect could contribute to the `acoustic transparency' effect often observed in MTDs in real-world seismic data.
+The results of these synthetic seismic modelling experiments suggest that decreasing the lateral correlation length within a heterogeneous geobody can significantly reduce the average seismic amplitude in single-channel seismic experiments (Figs.~\ref{fig:single-source-results} and \ref{fig:multi-source-results}).
+Therefore, we suggest that progressive deformation within MTDs is also likely to generate a significant average amplitude reduction in single-channel data, relative to unfailed sediments.
+In other words, it is likely that `acoustic transparency' can---in some cases---result from stratal disruption alone, without having to invoke mechanisms to reduce the internal reflectivity such as fine-scale mixing, disaggregation or the presence of free gas.
+Moreover, this stratal disruption can be on a scale significantly larger than the dominant seismic wavelength (Figs.~\ref{fig:single-source-results}b and ~\ref{fig:multi-source-results}d).
+
+MTDs are commonly associated with seismic diffractions in seismic profiles \citep{urgeles_recurrent_1999,diviacco_late_2006,ford_seismic_2021}.
+In the random media experiments in this study, the primary source of scattering is likely to be tip diffractions from the `bed terminations'.
+In real geology, simple deformation will not generate these kind of terminations---but the apexes of folds may.
+It is likely that real-world MTDs will have additional sources of scattering beyond those we model in this study, including basal grooves, ramp-and-flat basal topography, remnant blocks, faulting and vertical erosive surfaces \citep{bull_review_2009,ford_seismic_2021}.
+
+An alternative mechanism for reducing the observed seismic amplitudes within real-world MTDs is the removal of internal reflectivity due to disaggregation and fine-scale mixing (i.e., at scales much smaller than the seismic wavelength) during failure and emplacement.
+Many previous studies have considered this a likely source of seismic `transparency' (see references in Section~\ref{sec:introduction}).
+We consider that the removal of internal reflectivity is indeed commonplace within real-world MTDs.
+There are many documented outcrop examples of fine-scale mixing within component lithologies of the slide mass, grain-scale deformation/alteration and petrophysical changes due to densification and over-compaction \citep{ogata_carbonate_2014}.
+Over-compaction is caused by sliding disturbing an existing pore network and removing porosity, with the effect of making the bulk mass denser (due to a lower proportion of relatively low density pore fluids), and reducing the magnitude of pre-existing impedance contrasts.
+This in turn reduces the effective reflectivity and therefore the seismic amplitudes.
+Another mechanism likely to be common in real-world MTDs is seismic attenuation, e.g., from partially saturated pore fluids (free gas).
+Seismic attenuation causes amplitude reduction and preferential attenuation of high frequencies.
+This has the effect of creating vertical `blanking zones' below an attenuating geobody and a loss of resolution with increasing depth.
+Due to the relatively low seismic penetration of sub-bottom profiler data, there may be scenarios where such attenuating zones appear similar in character to seismically `transparent' zones.
+MTDs are indeed often associated with fluid expulsion and subsurface fluid flow \citep{diviacco_late_2006, sun_free_2017, moernaut_evaluating_2020}.
+Moreover, the presence of free gas in the pore space reduces the bulk density compared to water, therefore will act to reduce the internal acoustic reflectivity, on average.
+We consider it likely that some seismically `transparent' zones in real-world MTDs are actually caused by free gas, rather than by other sources of amplitude reduction.
+In this study, however, we show that seismic attenuation is not necessary to generate such `transparent' zones.
+This should be taken into account when interpreting datasets from geological settings where heterogeneous geobodies (e.g., MTDs) are found close to attenuating geobodies (e.g., gas clouds and mud volcanoes).
+
+It should be noted that the maximum amplitude reduction observed in the multi-source synthetic experiment ($\sim$25\%, Fig.~\ref{fig:multi-source-results}) is not as large as the amplitude reduction observed in the 2017 Black Sea geohazard survey real data example ($\sim$50\%, Fig.~\ref{fig:black-sea-example}).
+In real data the magnitude of the amplitude reduction will be strongly connected to the bandwidth of the seismic source, the signal penetration and the scale of the internal deformation.
+This means that even if we choose accurate elastic and geostatistical parameters for the multi-source synthetic experiment, the results are not likely to be quantitatively comparable with the real data.
+In addition, we model the sub-bottom profiler seismic source as a point source, with a spherical wavefront.
+In reality, sub-bottom profiler sources are often transducers with dimensions that are a non-negligible fraction of the dominant source wavelength.
+This can be used to create a ‘beam-forming’ effect, which reduces the signal-to-noise ratio and increases the penetration by concentrating energy in a narrower, focused beam.
+We suspect that the real-world amplitude reduction effect may in fact be larger with such a source geometry due to the smaller effective Fresnel radius.
+The size of the Fresnel radius is particularly relevant in MTD scenarios, where headscarp regression, intact blocks and widespread internal faulting can result in reflectors of very different magnitude and polarity infering within the same Fresnel zone \citep[e.g.,][]{sammartini_propagation_2021}.
+
+On the other hand, many sub-bottom profiler investigations are made from hull-mounted echosounders.
+In the Black Sea case study example, the water depth is approximately 1 \unit{km}, implying that the Fresnel radius would be significantly larger (on the order of 20 \unit{m}) than for the AUV experiment modelled in this study (2.8 \unit{m}).
+Full-wavefield modelling with a water column of 1 \unit{km} would likely be computationally unfeasible to model for a high-frequency sub-bottom profiler-type source (Table~S5).
+We include in the Supporting Information an example of a single-source synthetic experiment where the source is located further from the heterogeneous zone than in the original single-source experiment (Fig.~S12), which shows a similar magnitude amplitude reduction effect despite the Fresnel radius being approximately twice as large (Figs.~S13 and S15).
+
+The single-source synthetic experiment results suggest that it is likely that this amplitude reduction effect is not strongly dependent on the relationship between the dominant wavelength and the average bed thickness (Section~\ref{sec:discussion-het-media}).
+This means that the deformation-induced amplitude reduction effect likely generalises to many geological settings, in different water depths and with different seismic source bandwidths.
+These results imply that simple 1-D models for wave propagation in MTD-style geology are not appropriate even for single-channel, zero-offset data.
+Several previously published works have made the implicit assumption that seismically `transparent' MTDs are associated with little preserved internal structure (Section~\ref{sec:introduction}).
+The results of this study show that an amplitude reduction effect can be generated even by MTDs that preserve coherent internal structure around the scale of the seismic wavelength, and significantly above core-scale (Figs.~\ref{fig:multi-source-results} and \ref{fig:multi-source-cores}).
+We argue, therefore, that `acoustic transparency' does not necessarily correspond to a lack of well-preserved internal structure around the scale of the seismic wavelength.
+Nevertheless, it is likely that in the real-world this effect is a combination of deformation-induced amplitude reduction (modelled in this study), true reflectivity loss from mass-transport processes and possibly an attenuation component where the MTD is associated with free gas.
+
+Finally, we also observe a small amplitude \emph{increase} effect in the analysis window below the MTD (Fig.~\ref{fig:multi-source-results}).
+We speculate that this increase could be due to contributions from i) lower transmission losses in the MTD zone with increasing deformation, increasing the amount of energy reflected from beneath; ii) scattering from heterogeneities not directly below the source/receiver (i.e., delayed arrivals of point-scattered `diffraction tails'); or iii) multiple-scattered arrivals within the heterogeneous layer (internal multiples recorded at later TWTT compared to the primary reflections).
+Lower transmission losses are not relevant in the single-source experiment, because there is no reflectivity within the homogenous layer beneath the heterogeneous zone.
+Contributions from off-vertical scattering are relatively small, as the recorded trace in the unfailed sediments does not appreciably change between the pre- and post-failure models, indicating that the MTD zone is not generating scattering to strongly affect the seismic image outside it (Fig.~\ref{fig:multi-source-results}a-c).
+It is plausible that when the geological properties are very well constrained, the amplitudes \emph{below} an MTD could be used to differentiate between amplitude reduction due to internal deformation and a true lack of internal reflectivity.
+We are not aware of any published examples of this coda effect in real world data.
+Detecting a coda beneath an MTD (even visually) requires that the sub-bottom profiler has enough penetration to image strata beneath the MTD, that the amplitudes of these sub-MTD strata are not affected by, e.g., gas, and that the overall signal to noise ratio of the data is good enough, with amplitude-preserving processing applied.
+These factors could make any such coda difficult to observe in real world sub-bottom profiler data.
+
+\subsection{Core-scale characterisation of mass-transport deposits}
+\label{sec:core-scale}
+Fig.~\ref{fig:multi-source-cores}a reproduces virtual cores extracted from the MTD zone in the multi-source synthetic experiment, with progressively increasing degrees of deformation.
+At core-scale, deformation structures are only noticeable when lateral correlation lengths are below approximately $a_x \leq 0.5$ \unit{m} (Fig.~\ref{fig:multi-source-cores}a).
+The seismic amplitude reduction effect, however, begins to be noticeable at much larger lateral correlation lengths, below approximately $a_x \leq 10$ \unit{m} (Fig.~\ref{fig:multi-source-results}b).
+In other words, for progressively increasing deformation, the amplitude reduction effect can be observed in the seismic data well before deformation is visible in sediment cores.
+This result is not surprising---the effective maximum `lateral resolution' of cores (up to $\sim0.1$ \unit{m}) is an order of magnitude lower than the effective minimum lateral resolution of typical single-channel seismic surveys \citep[metre-scale,][]{vardy_deriving_2015}.
+
+Core-seismic correlation is possible in many sedimentary environments that have parallel and undeformed bedding (i.e., could be represented by random media with very long lateral correlation lengths).
+Core-seismic correlation implicitly relies on a simple 1-D model of wave propagation in sedimentary sequences.
+When bedding is strongly deformed, lateral heterogeneity increases and the lateral seismic resolution becomes relevant.
+These modelling experiments show that seismic amplitudes can be significantly affected by lateral heterogeneity, meaning that that core-seismic correlation is unlikely to be reliable in geobodies containing strongly deformed sediments.
+Therefore it should not be surprising that core-seismic correlation within MTDs is frequently challenging \citep[e.g.,][Fig.~\ref{fig:black-sea-core}, this study]{expedition_316_scientists_expedition_2009, strasser_slumping_2011, sammartini_propagation_2021}.
+
+\begin{figure*}
+    \includegraphics{figures/fig07.pdf}
+    \caption{
+        a) Virtual cores from the mass-transport deposit zone in the multi-source synthetic experiment (Fig.~\ref{fig:multi-source-model}), with fixed vertical correlation length and progressively decreasing lateral correlation lengths.
+        b) Conceptual cartoon model for progressive stratal disruption in a thin layered two lithology sedimentary sequence, from unfailed, undeformed strata to a strongly deformed `block-in-matrix' style fabric \cite[modified from][]{ogata_mass_2012}.
+    }
+    \label{fig:multi-source-cores}
+\end{figure*}
+
+\conclusions
+
+In this study we investigate the seismic amplitude response of two-component, anisotropic random media to changing heterogeneity using 2-D elastic finite-difference modelling.
+We suggest that this type of random media model may be a reasonable first-order approximation of the heterogeneous internal structure of MTDs, where previously distinct strata have been strongly deformed and disrupted by mass-transport processes.
+
+The single-source synthetic experiment shows a sustained decrease in seismic amplitudes with decreasing lateral correlation length, replicated across a two-orders-of-magnitude range of vertical correlation lengths.
+The multi-source synthetic experiment, designed to replicate an AUV-style sub-bottom profiler acquisition over a realistic geometry MTD scenario, also shows a sustained decrease in seismic amplitude with decreasing lateral correlation length.
+The elastic properties of the two component lithologies are fixed, thus the magnitude of impedance contrasts remains constant for all realisations.
+These results indicate that a significant reduction in seismic amplitude within MTDs can be caused by straightforward deformation, rather than either petrophysical changes from mass-transport processes (e.g., fine-scale mixing, overcompaction or pore fluid substitution) or seismic attenuation.
+The magnitude of this amplitude reduction depends on many acquisition and geological parameters, therefore the results are not quantitatively comparable with real-world data.
+We do suggest, however, that this numerical modelling evidence should dissuade practitioners from making strong claims about the internal structure of MTDs based on their seismic amplitude response alone.
+Put simply, `acoustic transparency' does not necessarily imply a lack of coherent internal structure around the scale of the seismic wavelength, because the seismic response of MTDs is strongly controlled by the geometry---in addition to the magnitude---of the internal reflectivity.
+Additionally, this reduction in seismic amplitude can, according to these modelling experiments, be generated by lateral heterogeneity that is much larger than the diameter of sediment cores (10s of centimetres).
+Apparently undeformed sediment cores are not incompatible with seismically `transparent' MTDs.
+
+\codedataavailability{Python code to generate the models, run the seismic forward modelling and reproduce Figs.~\ref{fig:single-source-model} to \ref{fig:multi-source-cores} is available at \cite{sbp-transparency-zenodo}.
+Model building uses Numpy \citep{harris2020array} and Scipy \citep{2020SciPy-NMeth}, and GSTools is used to generate the binarised random fields \citep{muller_geostat-frameworkgstools_2021}.
+The seismic forward modelling uses Devito \citep{devito-api} and results are visualised using Matplotlib \citep{Hunter:2007}.}
+
+\authorcontribution{
+JF: Conceptualization, Investigation, Methodology, Software, Visualization, Writing -- original draft;
+AC: Funding acquisition, Supervision, Writing -- review \& editing;
+FZ and MC: Data curation, Resources, Supervision, Writing -- review \& editing (CRediT -- Contributor Roles Taxonomy).}
+
+\competinginterests{The contact author has declared that neither they nor their co-authors have any competing interests.}
+
+\begin{acknowledgements}
+Field data presented in Figs.~\ref{fig:black-sea-example} and \ref{fig:black-sea-core} and in the Supporting Information are used with permission from RINA Consulting.
+J. Ford was supported by a Marie Sk\l{}odowska-Curie Doctoral Fellowship through the {SLATE} Innovative Training Network within the European Union Framework Programme for Research and Innovation Horizon 2020 under Grant Agreement No. 721403.
+Numerical simulations were carried out at the Cineca HPC facility under the HPC-TRES program.
+We thank the reviewers Jasper Moernaut and Martino Foschi and the editor Simone Pilia for their constructive comments.
+
+\end{acknowledgements}
+
+\bibliographystyle{copernicus}
+\bibliography{references.bib}
+
+\end{document}
